@@ -8,7 +8,7 @@ ARG FLUTTER_VERSION="stable"
 RUN \
     apt-get update && \
     apt-get install -y \
-        which file curl tar zip unzip git adb xz-utils
+        file curl tar zip unzip libarchive-tools git adb xz-utils
 
 ENV HOME="/home/devel"
 
@@ -32,13 +32,10 @@ USER devel
 
 
 RUN \
-    mkdir -p "${ANDROID_SDK_ROOT}/cmdline-tools" && \
-    CMDLINETOOLS_ZIP="commandlinetools-linux-9477386_latest.zip" && \
-    pushd "/tmp" && \
-    curl -SLO "https://dl.google.com/android/repository/${CMDLINETOOLS_ZIP}" && \
-    unzip -j "${CMDLINETOOLS_ZIP}" "cmdline-tools/*" -d "${ANDROID_SDK_ROOT}/cmdline-tools/latest" && \
-    rm "${CMDLINETOOLS_ZIP}" && \
-    popd
+    mkdir -p "${ANDROID_SDK_ROOT}/cmdline-tools/latest" && \
+    curl -SL "https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip" | \
+        bsdtar xvf - -C "${ANDROID_SDK_ROOT}/cmdline-tools/latest/" --strip-components=1 "cmdline-tools" && \
+    chmod +x ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/*
 
 
 RUN \
