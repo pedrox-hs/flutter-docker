@@ -22,7 +22,7 @@ ENV FLUTTER_HOME=/opt/flutter
 ENV PATH="${JAVA_HOME}/bin:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools:${FLUTTER_HOME}/bin:${PATH}"
 
 
-COPY --from=eclipse-temurin:11 $JAVA_HOME $JAVA_HOME
+COPY --from=docker.io/eclipse-temurin:11 $JAVA_HOME $JAVA_HOME
 
 
 RUN \
