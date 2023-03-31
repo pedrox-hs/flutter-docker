@@ -10,22 +10,26 @@ RUN \
     apt-get install -y \
         curl git xz-utils zip unzip adb
 
+ENV HOME="/home/devel"
 
-ENV JAVA_HOME=/opt/java/openjdk
+ENV JAVA_HOME="/opt/java/openjdk"
 
-ENV ANDROID_HOME=/home/devel/android-sdk
+ENV ANDROID_HOME="${HOME}/tools/android-sdk"
 ENV ANDROID_SDK_ROOT="${ANDROID_HOME}"
 ENV ANDROID_BUILD_TOOLS_VERSION="${ANDROID_BUILD_TOOLS_VERSION}"
 
-ENV FLUTTER_HOME=/home/devel/flutter
+ENV FLUTTER_HOME="${HOME}/tools/flutter"
 
 ENV PATH="${JAVA_HOME}/bin:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools:${FLUTTER_HOME}/bin:${PATH}"
 
 
 COPY --from=docker.io/eclipse-temurin:11 $JAVA_HOME $JAVA_HOME
 
-RUN useradd -ms /bin/bash devel
+
+RUN useradd -ms /bin/bash -d $HOME devel
+
 USER devel
+
 
 RUN \
     mkdir -p $ANDROID_SDK_ROOT/cmdline-tools && \
