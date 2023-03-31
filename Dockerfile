@@ -32,11 +32,13 @@ USER devel
 
 
 RUN \
-    mkdir -p $ANDROID_SDK_ROOT/cmdline-tools && \
-    cd /tmp && \
-    curl -SL "https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip" | jar xvf /dev/stdin && \
-    mv -v /tmp/cmdline-tools "${ANDROID_SDK_ROOT}/cmdline-tools/latest" && \
-    chmod +x $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/*
+    mkdir -p "${ANDROID_SDK_ROOT}/cmdline-tools" && \
+    CMDLINETOOLS_ZIP="commandlinetools-linux-9477386_latest.zip" && \
+    pushd "/tmp" && \
+    curl -SLO "https://dl.google.com/android/repository/${CMDLINETOOLS_ZIP}" && \
+    unzip -j "${CMDLINETOOLS_ZIP}" "cmdline-tools/*" -d "${ANDROID_SDK_ROOT}/cmdline-tools/latest" && \
+    rm "${CMDLINETOOLS_ZIP}" && \
+    popd
 
 
 RUN \
