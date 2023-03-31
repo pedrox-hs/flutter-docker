@@ -51,4 +51,6 @@ RUN \
     yes | flutter doctor --android-licenses
 
 
-VOLUME [ "/apps" ]
+RUN mkdir /apps
+
+WORKDIR "/apps"
