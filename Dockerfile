@@ -13,17 +13,19 @@ RUN \
 
 ENV JAVA_HOME=/opt/java/openjdk
 
-ENV ANDROID_HOME=/opt/android-sdk
+ENV ANDROID_HOME=/home/devel/android-sdk
 ENV ANDROID_SDK_ROOT="${ANDROID_HOME}"
 ENV ANDROID_BUILD_TOOLS_VERSION="${ANDROID_BUILD_TOOLS_VERSION}"
 
-ENV FLUTTER_HOME=/opt/flutter
+ENV FLUTTER_HOME=/home/devel/flutter
 
 ENV PATH="${JAVA_HOME}/bin:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools:${FLUTTER_HOME}/bin:${PATH}"
 
 
 COPY --from=docker.io/eclipse-temurin:11 $JAVA_HOME $JAVA_HOME
 
+RUN useradd -ms /bin/bash devel
+USER devel
 
 RUN \
     mkdir -p $ANDROID_SDK_ROOT/cmdline-tools && \
