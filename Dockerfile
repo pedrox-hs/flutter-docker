@@ -56,4 +56,12 @@ RUN \
     yes | flutter doctor --android-licenses
 
 
+RUN \
+    if [ -d "${FLUTTER_HOME}/bin/cache/artifacts/engine/linux-arm64" ] && [ ! -d "${FLUTTER_HOME}/bin/cache/artifacts/engine/linux-arm64/shader_lib" ]; then \
+        cd "${FLUTTER_HOME}" && \
+        curl -SL "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$(git describe --tags)-stable.tar.xz" | \
+            tar Jxvf - -C "${FLUTTER_HOME}/bin/cache/artifacts/engine/linux-arm64/" --strip-components=6 "flutter/bin/cache/artifacts/engine/linux-x64/shader_lib"; \
+    fi
+
+
 WORKDIR "/home/devel"
