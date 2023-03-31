@@ -4,7 +4,7 @@
 
 ```bash
 # clone this repository
-git clone https://github.com/pedrox-hs/flutter-docker.git
+git clone https://github.com/pedrox-hs/flutter-docker.git -b base-img/fedora-minimal
 cd flutter-docker
 
 # build image
