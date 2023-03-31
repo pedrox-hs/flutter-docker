@@ -57,6 +57,4 @@ RUN \
     yes | flutter doctor --android-licenses
 
 
-RUN mkdir /apps
-
-WORKDIR "/apps"
+WORKDIR "/home/devel"
