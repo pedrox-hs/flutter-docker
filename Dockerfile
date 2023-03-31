@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM registry.fedoraproject.org/fedora-minimal:latest
 
 ARG ANDROID_SDK_VERSION="33"
 ARG ANDROID_BUILD_TOOLS_VERSION="33.0.2"
@@ -6,9 +6,9 @@ ARG FLUTTER_VERSION="stable"
 
 
 RUN \
-    apt-get update && \
-    apt-get install -y \
-        curl tar zip unzip git adb xz-utils
+    microdnf update -y && \
+    microdnf install -y \
+        curl tar zip unzip git adb xz
 
 ENV HOME="/home/devel"
 
