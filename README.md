@@ -1,6 +1,6 @@
 # flutter-docker
 
-## Usage
+## Build
 
 ```bash
 # clone this repository
@@ -9,7 +9,12 @@ cd flutter-docker
 
 # build image
 docker build -t flutter_sdk:latest .
+```
 
-# usage example
+## Usage
+
+There is an usage example:
+
+```bash
 docker run -ti --rm -v $PWD/example:/home/devel/apps/example:Z flutter_sdk:latest bash -c 'cd /home/devel/apps/example && flutter build apk'
 ```
