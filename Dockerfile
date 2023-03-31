@@ -8,7 +8,7 @@ ARG FLUTTER_VERSION="stable"
 RUN \
     apt-get update && \
     apt-get install -y \
-        curl tar zip unzip git adb xz-utils
+        which file curl tar zip unzip git adb xz-utils
 
 ENV HOME="/home/devel"
 
