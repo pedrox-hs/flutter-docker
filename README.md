@@ -11,5 +11,5 @@ cd flutter-docker
 docker build -t flutter_sdk:latest .
 
 # usage example
-docker run -ti --rm -v $PWD/example:/apps/example flutter_sdk:latest bash -c 'cd /apps/example && flutter build apk'
+docker run -ti --rm -v $PWD/example:/home/devel/apps/example:Z flutter_sdk:latest bash -c 'cd /home/devel/apps/example && flutter build apk'
 ```
